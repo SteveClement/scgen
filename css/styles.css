@@ -47,3 +47,9 @@
     }
 }
 
+table .btn{
+  padding: 0px 3px 3px 3px;
+  font-size: 6px;
+  margin-right: -3px;
+}
+
