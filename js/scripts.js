@@ -33,6 +33,7 @@ var scgen = {
             errdisable_recovery_cause:  [ "errdisable recovery cause", "%1" ],
             spanningtree_mode:          [ "spanning-tree mode", "%1" ],
             spanningtree_portfast_bpduguard_default: [ "spanning-tree portfast bpduguard default" ],
+            spanningtree_guard_loop_default: [ "spanning-tree loopguard default" ],
             spanningtree_extend:        [ "spanning-tree extend system-id" ],
             spanningtree_disable:       [ "no spanning-tree vlan", "%1" ],
             spanningtree_vlan_priority: [ "spanning-tree vlan", "%1", "priority", "%2" ],
@@ -94,6 +95,8 @@ var scgen = {
             password:                   [ "password", "%1" ],
             logging:                    [ "logging", "%1" ],
             stopbits:                   [ "stopbits", "%1" ],
+            transportssh:				[ "transport input ssh" ],
+            transportnone:				[ "transport input none" ],
         }, /*}}}*/
     },
 

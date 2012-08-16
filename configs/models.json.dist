@@ -388,6 +388,14 @@
                                 "enabled": true
                             },
                             {
+                                "name": "Enable Guard Loop by default?",
+                                "command": "spanningtree_guard_loop_default",
+                                "hidden": false,
+                                "ui": "checkbox",
+                                "value": false,
+                                "enabled": true
+                            },
+                            {
                                "name": "Use System ID extension?",
                                "command": "spanningtree_extend",
                                "hidden": true,
@@ -615,6 +623,12 @@
                                     "synchronous": "Synchronous",
                                     "asynchronous": "Asynchronous"
                                 }
+                            },
+                              {
+                                "name": "Transport Input",
+                                "command": "transportssh",
+                                "ui": "text",
+                                "hidden": true
                             }
                         ]
                     },
@@ -652,7 +666,14 @@
                                     "synchronous": "Synchronous",
                                     "asynchronous": "Asynchronous"
                                 }
+                            },
+                             {
+                                "name": "Transport Input",
+                                "command": "transportnone",
+                                "ui": "text",
+                                "hidden": true
                             }
+
                         ]
                     }
                 ]

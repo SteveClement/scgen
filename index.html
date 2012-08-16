@@ -8,6 +8,7 @@
 
         <!-- Bootstrap //-->
         <link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap-responsive.min.css" />
         <script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script>
 
         <!-- Angular JS //-->
@@ -58,304 +59,310 @@
                             </fieldset>
                         </form>
                     </div>
-                    <form id="config_form" class="form-horizontal">
-                        <div>
-                            <script type="text/ng-template" id="context.tpl">
-                                <h2>{{context.name}}</h2>
-                                <div ng-repeat="section in context.sections | filter:nothidden | orderBy:'order'">
-                                    <ng-switch on="section.ui">
-                                        <div ng-switch-when="include">
-                                            <ng-include src="'context.tpl'" ng-repeat="context in array(selected_model.contexts[section.target])"></ng-include>
-                                        </div>
-                                        <fieldset ng-switch-default>
-                                            <legend>{{section.name}}</legend>
-                                            <ng-switch on="group.ui" ng-repeat="group in section.groups | filter:nothidden | orderBy:'order'">
-                                                <div ng-switch-when="checkboxgroup">
-                                                    <div class="control-group">
-                                                        <label class="control-label">{{group.name}}</label>
-                                                        <div class="controls">
-                                                            <label for="" class="checkbox" ng-repeat="field in group.fields | filter:nothidden">
-                                                                <input type="checkbox" id="" name="{{field.command||group.command}}" ng-model="field.enabled" value="{{field.value}}" />
-                                                                {{field.label}}
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div ng-switch-when="text">
-                                                    <div class="control-group">
-                                                        <label class="control-label">{{group.name}}</label>
-                                                        <div class="controls">
-                                                            <input type="text" name="{{group.command}}" ng-model="group.value" ng-pattern="validate(group.validation.pattern||'none')"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div ng-switch-when="number">
-                                                    <div class="control-group">
-                                                        <label class="control-label">{{group.name}}</label>
-                                                        <div class="controls">
-                                                            <input type="number" name="{{group.command}}" ng-model="group.value" min="{{group.validation.min}}" max="{{group.validation.max}}" ng-pattern="validate(group.validation.pattern||'none')" required/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div ng-switch-when="checkbox">
-                                                    <div class="control-group">
-                                                        <label class="control-label">{{group.name}}</label>
-                                                        <div class="controls">
-                                                            <input type="checkbox" name="{{group.command}}" ng-model="group.enabled" value="{{group.value}}" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div ng-switch-when="select">
-                                                    <div class="control-group">
-                                                        <label class="control-label">{{group.name}}</label>
-                                                        <div class="controls">
-                                                            <select name="{{group.command}}" ng-model="group.selected" ng-options="value as label for (value, label) in group.values"></select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div ng-switch-when="textarea">
-                                                    <div class="control-group">
-                                                        <label class="control-label">{{group.name}}</label>
-                                                        <div class="controls">
-                                                            <textarea name="{{group.command}}" rows="6" cols="45" wrap="off" class="span4">{{flatten(group.value)}}</textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div ng-switch-when="ipsubnet">
-                                                    <div class="control-group">
-                                                        <label class="control-label">{{group.name}}</label>
-                                                        <div class="controls">
-                                                            <input type="text" placeholder="IP Address" ng-model="group.values.address" />
-                                                            <input type="text" placeholder="Subnet Mask" ng-model="group.values.mask" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div ng-switch-when="hosts">
-                                                    <div class="control-group">
-                                                        <label class="control-label">{{group.name}}</label>
-                                                        <div class="controls">
-                                                            <table class="table-bordered table-condensed">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Hostname</th>
-                                                                        <th>Address</th>
-                                                                        <th>Remove</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr ng-repeat="(host,address) in group.values | orderBy:host">
-                                                                        <td>{{host}}</td>
-                                                                        <td>{{address}}</td>
-                                                                        <td>
-                                                                            <button class="btn btn-danger" data-host="{{host}}" ng-click="hosts.remove($event, group, host)">
-                                                                                <i class="icon-remove icon-white"></i>
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                            <div class="parent">
-                                                                <input type="text" placeholder="New Hostname" ng-model="hosts.new_host" />
-                                                                <input type="text" placeholder="New IP Address" ng-model="hosts.new_address" ng-pattern="validation.ip" />
-                                                                <div>
-                                                                    <button class="btn btn-success" ng-click="hosts.add($event, group);">
-                                                                        <i class="icon-edit icon-white"></i> Add/Edit Host
-                                                                    </button>
-                                                                </div>
+                    <div class="row">
+	                    <form id="config_form" class="form-horizontal">
+	                        <div>
+	                            <script type="text/ng-template" id="context.tpl">
+	                                <h2>{{context.name}}</h2>
+	                                <div ng-repeat="section in context.sections | filter:nothidden | orderBy:'order'">
+	                                    <ng-switch on="section.ui">
+	                                        <div ng-switch-when="include">
+	                                            <ng-include src="'context.tpl'" ng-repeat="context in array(selected_model.contexts[section.target])"></ng-include>
+	                                        </div>
+	                                        <fieldset ng-switch-default>
+	                                            <legend>{{section.name}}</legend>
+	                                            <ng-switch on="group.ui" ng-repeat="group in section.groups | filter:nothidden | orderBy:'order'">
+	                                                <div ng-switch-when="checkboxgroup">
+	                                                    <div class="control-group">
+	                                                        <label class="control-label">{{group.name}}</label>
+	                                                        <div class="controls">
+	                                                            <label for="" class="checkbox" ng-repeat="field in group.fields | filter:nothidden">
+	                                                                <input type="checkbox" id="" name="{{field.command||group.command}}" ng-model="field.enabled" value="{{field.value}}" />
+	                                                                {{field.label}}
+	                                                            </label>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div ng-switch-when="text">
+	                                                    <div class="control-group">
+	                                                        <label class="control-label">{{group.name}}</label>
+	                                                        <div class="controls">
+	                                                            <input type="text" name="{{group.command}}" ng-model="group.value" ng-pattern="validate(group.validation.pattern||'none')"/>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div ng-switch-when="number">
+	                                                    <div class="control-group">
+	                                                        <label class="control-label">{{group.name}}</label>
+	                                                        <div class="controls">
+	                                                            <input type="number" name="{{group.command}}" ng-model="group.value" min="{{group.validation.min}}" max="{{group.validation.max}}" ng-pattern="validate(group.validation.pattern||'none')" required/>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div ng-switch-when="checkbox">
+	                                                    <div class="control-group">
+	                                                        <label class="control-label">{{group.name}}</label>
+	                                                        <div class="controls">
+	                                                            <input type="checkbox" name="{{group.command}}" ng-model="group.enabled" value="{{group.value}}" />
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div ng-switch-when="select">
+	                                                    <div class="control-group">
+	                                                        <label class="control-label">{{group.name}}</label>
+	                                                        <div class="controls">
+	                                                            <select name="{{group.command}}" ng-model="group.selected" ng-options="value as label for (value, label) in group.values"></select>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div ng-switch-when="textarea">
+	                                                    <div class="control-group">
+	                                                        <label class="control-label">{{group.name}}</label>
+	                                                        <div class="controls">
+	                                                            <textarea name="{{group.command}}" rows="6" cols="45" wrap="off" class="span4">{{flatten(group.value)}}</textarea>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div ng-switch-when="ipsubnet">
+	                                                    <div class="control-group">
+	                                                        <label class="control-label">{{group.name}}</label>
+	                                                        <div class="controls">
+	                                                            <input type="text" placeholder="IP Address" ng-model="group.values.address" />
+	                                                            <input type="text" placeholder="Subnet Mask" ng-model="group.values.mask" />
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div ng-switch-when="hosts">
+	                                                    <div class="control-group">
+	                                                        <label class="control-label">{{group.name}}</label>
+	                                                        <div class="controls">
+	                                                            <table class="table-striped table-bordered table-condensed space">
+	                                                                <thead>
+	                                                                    <tr>
+	                                                                        <th class="span2">Hostname</th>
+	                                                                        <th class="span2">Address</th>
+	                                                                        <th class="span1">Remove</th>
+	                                                                    </tr>
+	                                                                </thead>
+	                                                                <tbody>
+	                                                                    <tr ng-repeat="(host,address) in group.values | orderBy:host">
+	                                                                        <td>{{host}}</td>
+	                                                                        <td>{{address}}</td>
+	                                                                        <td>
+	                                                                            <button class="btn btn-danger" data-host="{{host}}" ng-click="hosts.remove($event, group, host)">
+	                                                                                <i class="icon-remove icon-white"></i>
+	                                                                            </button>
+	                                                                        </td>
+	                                                                    </tr>
+	                                                                </tbody>
+	                                                            </table>
+	                                                             </div>
+                                                            <div class="controls">
+	                                                            <div class="parent">
+	                                                            	<div class="control-group">
+	                                                            		<div class="input-append">
+	                                                            		<input type="text" placeholder="New Hostname" ng-model="hosts.new_host" />
+                														<input id="appendedInputButton" size="16" type="text" ng-model="hosts.new_address" placeholder="New IP Address" ng-pattern="validation.ip"><button class="btn btn-success" type="button" ng-click="hosts.add($event, group);"><i class="icon-edit icon-white"></i>Add/Edit Host</button>
+              															</div>
+	                                                        		</div>
+	                                                    		</div>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div ng-switch-when="routes">
+	                                                    <div class="control-group">
+	                                                        <label class="control-label">{{group.name}}</label>
+	                                                        <div class="controls">
+	                                                            <table class="table-striped table-bordered table-condensed space">
+	                                                                <thead>
+	                                                                    <tr>
+	                                                                        <th class="span2">Address</th>
+	                                                                        <th class="span2">Mask</th>
+	                                                                        <th class="span2">Gateway</th>
+	                                                                        <th class="span1">Remove</th>
+	                                                                    </tr>
+	                                                                </thead>
+	                                                                <tbody>
+	                                                                    <tr ng-repeat="route in group.values | orderBy:'subnet'">
+	                                                                        <td>{{route.subnet}}</td>
+	                                                                        <td>{{route.mask}}</td>
+	                                                                        <td>{{route.gateway}}</td>
+	                                                                        <td>
+	                                                                            <button class="btn btn-danger" data-host="{{host}}" ng-click="routes.remove($event, group, $index)">
+	                                                                                <i class="icon-remove icon-white"></i>
+	                                                                            </button>
+	                                                                        </td>
+	                                                                    </tr>
+	                                                                </tbody>
+	                                                            </table>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div ng-switch-when="routes">
-                                                    <div class="control-group">
-                                                        <label class="control-label">{{group.name}}</label>
-                                                        <div class="controls">
-                                                            <table class="table-bordered table-condensed">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Address</th>
-                                                                        <th>Mask</th>
-                                                                        <th>Gateway</th>
-                                                                        <th>Remove</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr ng-repeat="route in group.values | orderBy:'subnet'">
-                                                                        <td>{{route.subnet}}</td>
-                                                                        <td>{{route.mask}}</td>
-                                                                        <td>{{route.gateway}}</td>
-                                                                        <td>
-                                                                            <button class="btn btn-danger" data-host="{{host}}" ng-click="routes.remove($event, group, $index)">
-                                                                                <i class="icon-remove icon-white"></i>
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                            <div class="parent">
-                                                                <input type="text" placeholder="New Subnet" ng-model="routes.new_subnet" ng-pattern="validation.ip" />
-                                                                <input type="text" placeholder="New Mask" ng-model="routes.new_mask" ng-pattern="validation.ip" />
-                                                                <input type="text" placeholder="New Gateway" ng-model="routes.new_gateway" ng-pattern="validation.ip" />
-                                                                <div>
-                                                                    <button class="btn btn-success" ng-click="routes.add($event, group);">
-                                                                        <i class="icon-edit icon-white"></i> Add Route
-                                                                    </button>
-                                                                </div>
+                                                            <div class="controls">
+	                                                            <div class="parent">
+		                                                            <div class="input-append">
+		                                                                <input type="text" placeholder="New Subnet" ng-model="routes.new_subnet" ng-pattern="validation.ip" />
+		                                                                <input type="text" placeholder="New Mask" ng-model="routes.new_mask" ng-pattern="validation.ip" />
+		                                                                <input id="appendedInputButton" size="16" type="text" ng-model="routes.new_gateway" placeholder="New Gateway" ng-pattern="validation.ip"><button class="btn btn-success" type="button" ng-click="routes.add($event, group);"><i class="icon-edit icon-white"></i>Add Route</button>
+		                                                                
+		                                                            </div>
+		                                                         </div>   
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div ng-switch-when="stpdisable">
+	                                                    <div class="control-group">
+	                                                        <label class="control-label">{{group.name}}</label>
+	                                                        <div class="controls">
+	                                                            <table class="table-bordered table-condensed">
+	                                                                <thead>
+	                                                                    <tr>
+	                                                                        <th>VLAN</th>
+	                                                                        <th>Remove</th>
+	                                                                    </tr>
+	                                                                </thead>
+	                                                                <tbody>
+	                                                                    <tr ng-repeat="vlan in group.values.sort()">
+	                                                                        <td>{{vlan}}</td>
+	                                                                        <td>
+	                                                                            <button class="btn btn-danger" ng-click="stpdisable.remove($event, group, $index)">
+	                                                                                <i class="icon-remove icon-white"></i>
+	                                                                            </button>
+	                                                                        </td>
+	                                                                    </tr>
+	                                                                </tbody>
+	                                                            </table>
+	                                                            <div class="parent">
+	                                                                <input type="text" placeholder="New VLAN" ng-model="stpdisable.new_vlan" />
+	                                                                <div>
+	                                                                    <button class="btn btn-success" ng-click="stpdisable.add($event, group);">
+	                                                                        <i class="icon-edit icon-white"></i> Add VLAN
+	                                                                    </button>
+	                                                                </div>
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div ng-switch-when="servers">
+	                                                    <div class="control-group">
+	                                                        <label class="control-label">{{group.name}}</label>
+	                                                        <div class="controls">
+	                                                            <table class="table-striped table-bordered table-condensed space">
+	                                                                <thead>
+	                                                                    <tr>
+	                                                                        <th class="span3">Server</th>
+	                                                                        <th class="span1">Remove</th>
+	                                                                    </tr>
+	                                                                </thead>
+	                                                                <tbody>
+	                                                                    <tr ng-repeat="server in group.values.sort()">
+	                                                                        <td>{{server}}</td>
+	                                                                        <td>
+	                                                                            <button class="btn btn-danger" ng-click="servers.remove($event, group, $index)">
+	                                                                                <i class="icon-remove icon-white"></i>
+	                                                                            </button>
+	                                                                        </td>
+	                                                                    </tr>
+	                                                                </tbody>
+	                                                            </table>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div ng-switch-when="stpdisable">
-                                                    <div class="control-group">
-                                                        <label class="control-label">{{group.name}}</label>
-                                                        <div class="controls">
-                                                            <table class="table-bordered table-condensed">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>VLAN</th>
-                                                                        <th>Remove</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr ng-repeat="vlan in group.values.sort()">
-                                                                        <td>{{vlan}}</td>
-                                                                        <td>
-                                                                            <button class="btn btn-danger" ng-click="stpdisable.remove($event, group, $index)">
-                                                                                <i class="icon-remove icon-white"></i>
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                            <div class="parent">
-                                                                <input type="text" placeholder="New VLAN" ng-model="stpdisable.new_vlan" />
-                                                                <div>
-                                                                    <button class="btn btn-success" ng-click="stpdisable.add($event, group);">
-                                                                        <i class="icon-edit icon-white"></i> Add VLAN
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div ng-switch-when="servers">
-                                                    <div class="control-group">
-                                                        <label class="control-label">{{group.name}}</label>
-                                                        <div class="controls">
-                                                            <table class="table-bordered table-condensed">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Server</th>
-                                                                        <th>Remove</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr ng-repeat="server in group.values.sort()">
-                                                                        <td>{{server}}</td>
-                                                                        <td>
-                                                                            <button class="btn btn-danger" ng-click="servers.remove($event, group, $index)">
-                                                                                <i class="icon-remove icon-white"></i>
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                            <div class="parent">
-                                                                <input type="text" placeholder="New Server" ng-model="servers.new_server" />
-                                                                <div>
-                                                                    <button class="btn btn-success" ng-click="servers.add($event, group);">
-                                                                        <i class="icon-edit icon-white"></i> Add VLAN
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div ng-switch-when="aliases">
-                                                    <div class="control-group">
-                                                        <label class="control-label">{{group.name}}</label>
-                                                        <div class="controls">
-                                                            <table class="table-bordered table-condensed">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Context</th>
-                                                                        <th>Name</th>
-                                                                        <th>Command</th>
-                                                                        <th>Remove</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr ng-repeat="alias in group.values.sort() | orderBy:['context','name']">
-                                                                        <td>{{alias.context}}</td>
-                                                                        <td>{{alias.name}}</td>
-                                                                        <td>{{alias.command}}</td>
-                                                                        <td>
-                                                                            <button class="btn btn-danger" ng-click="aliases.remove($event, group, $index)">
-                                                                                <i class="icon-remove icon-white"></i>
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                            <div class="parent">
-                                                                <input type="text" placeholder="New Context" ng-model="aliases.new_context" />
-                                                                <input type="text" placeholder="New Name" ng-model="aliases.new_name" />
-                                                                <input type="text" placeholder="New Command" ng-model="aliases.new_command" />
-                                                                <div>
-                                                                    <button class="btn btn-success" ng-click="aliases.add($event, group);">
-                                                                        <i class="icon-edit icon-white"></i> Add Alias
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div ng-switch-when="addvlan">
-                                                    <div class="control-group">
-                                                        <label>New VLAN</label>
-                                                        <div class="controls">
-                                                            <input type="number" min="2" max="4096" ng-model="vlans.new_vlan" />
-                                                            <input type="text" placeholder="New Description" ng-model="vlans.new_description" />
-                                                            <div>
-																<button class="btn btn-success" ng-click="vlans.add($event, context);">
-																	<i class="icon-edit icon-white"></i> Add VLAN
-																</button>
-															</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div ng-switch-when="addinterface">
-                                                    <div class="control-group">
-                                                        <label>New Interface</label>
-                                                        <div class="controls">
-                                                            <input type="text" placeholder="New Interface"  ng-model="interfaces.new_interface" />
-                                                            <select ng-model="interfaces.new_standard" ng-options="standard as standard.name for standard in port_standards"></select>
-                                                            <div>
-																<button class="btn btn-success" ng-click="interfaces.add($event, context);">
-																	<i class="icon-edit icon-white"></i> Add Interface
-																</button>
-															</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div ng-switch-default>
-                                                    Unsupported UI {{group.ui}}
-                                                </div>
-                                            </ng-switch>
-                                            <div class="control-group" ngm-if="section.removeable">
-                                                <div class="controls">
-                                                    <button class="btn btn-danger" ng-click="sections.remove($event, context, 'switch_context_params[0]', section.switch_context_params[0]);">
-                                                        <i class="icon-remove icon-white"></i> Remove
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </ng-switch>
-                                </div>
-                            </script>
-                            <ng-include src="'context.tpl'" ng-repeat="context in array(selected_model.contexts.global)"></ng-include>
-                        </div>
-                    </form>
-                </div><!-- span6 -->
+                                                            <div class="controls">
+	                                                            <div class="parent">
+	                                                            	<div class="control-group">
+         																
+	                                                            		<div class="input-append">
+                <input id="appendedInputButton" size="16" type="text" ng-model="servers.new_server" placeholder="New Server"><button class="btn btn-success" type="button" ng-click="servers.add($event, group)";><i class="icon-edit icon-white"></i>Add Server</button>
+              															</div>
+	                                                        		</div>
+	                                                    		</div>
+	                                                    	</div>
+	                                                    </div>
+	                                                </div>
+	                                                <div ng-switch-when="aliases">
+	                                                    <div class="control-group">
+	                                                        <label class="control-label">{{group.name}}</label>
+	                                                        <div class="controls">
+	                                                            <table class="table-striped table-bordered table-condensed space">
+	                                                                <thead>
+	                                                                    <tr>
+	                                                                        <th>Context</th>
+	                                                                        <th>Name</th>
+	                                                                        <th>Command</th>
+	                                                                        <th>Remove</th>
+	                                                                    </tr>
+	                                                                </thead>
+	                                                                <tbody>
+	                                                                    <tr ng-repeat="alias in group.values.sort() | orderBy:['context','name']">
+	                                                                        <td>{{alias.context}}</td>
+	                                                                        <td>{{alias.name}}</td>
+	                                                                        <td>{{alias.command}}</td>
+	                                                                        <td>
+	                                                                            <button class="btn btn-danger" ng-click="aliases.remove($event, group, $index)">
+	                                                                                <i class="icon-remove icon-white"></i>
+	                                                                            </button>
+	                                                                        </td>
+	                                                                    </tr>
+	                                                                </tbody>
+	                                                            </table>
+	                                                            </div> 
+	                                                            <div class="controls">
+	                                                            <div class="parent">
+	                                                           
+	                                                                <input type="text" placeholder="New Context" ng-model="aliases.new_context" />
+	                                                                <input type="text" placeholder="New Name" ng-model="aliases.new_name" />
+	                                                                <div class="input-append">
+                <input id="appendedInputButton" size="16" type="text" ng-model="aliases.new_command" placeholder="New Command"><button class="btn btn-success" type="button" ng-click="aliases.add($event, group);";><i class="icon-edit icon-white"></i>Add Alias</button>
+              															</div>
+	                                                        
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div ng-switch-when="addvlan">
+	                                                    <div class="control-group">
+	                                                        <label>New VLAN</label>
+	                                                        <div class="controls">
+	                                                            <input type="number" min="2" max="4096" ng-model="vlans.new_vlan" />
+	                                                            <input type="text" placeholder="New Description" ng-model="vlans.new_description" />
+	                                                            <div>
+																	<button class="btn btn-success" ng-click="vlans.add($event, context);">
+																		<i class="icon-edit icon-white"></i> Add VLAN
+																	</button>
+																</div>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div ng-switch-when="addinterface">
+	                                                    <div class="control-group">
+	                                                        <label>New Interface</label>
+	                                                        <div class="controls">
+	                                                            <input type="text" placeholder="New Interface"  ng-model="interfaces.new_interface" />
+	                                                            <select ng-model="interfaces.new_standard" ng-options="standard as standard.name for standard in port_standards"></select>
+	                                                            <div>
+																	<button class="btn btn-success" ng-click="interfaces.add($event, context);">
+																		<i class="icon-edit icon-white"></i> Add Interface
+																	</button>
+																</div>
+	                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                                <div ng-switch-default>
+	                                                    Unsupported UI {{group.ui}}
+	                                                </div>
+	                                            </ng-switch>
+	                                            <div class="control-group" ngm-if="section.removeable">
+	                                                <div class="controls">
+	                                                    <button class="btn btn-danger" ng-click="sections.remove($event, context, 'switch_context_params[0]', section.switch_context_params[0]);">
+	                                                        <i class="icon-remove icon-white"></i> Remove
+	                                                </div>
+	                                            </div>
+	                                        </fieldset>
+	                                    </ng-switch>
+	                                </div>
+	                            </script>
+	                            <ng-include src="'context.tpl'" ng-repeat="context in array(selected_model.contexts.global)"></ng-include>
+	                        </div>
+	                    </form>
+	                </div><!-- span6 -->
+	            </div>
                 <div class="span6" id="script_container"><!--{{{-->
                     <form id="script_form">
                         <fieldset id="generated_config_fields">
