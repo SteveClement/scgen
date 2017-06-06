@@ -372,7 +372,7 @@
                                 "command": "spanningtree_mode",
                                 "hidden": false,
                                 "ui": "select",
-                                "selected": "rapid-pvst",
+                                "selected": "pvst",
                                 "values": {
                                     "rapid-pvst": "Rapid PVST",
                                     "pvst": "PVST",
@@ -1569,6 +1569,82 @@
                                 "ui": "ipsubnet",
                                 "values": {
                                     "address": "192.168.0.2",
+                                    "mask": "255.255.255.0"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Interface GigabitEthernet1/0/1",
+                        "hidden": false,
+                        "ios_context": "interface",
+                        "switch_context": "interface",
+                        "switch_context_params": [
+                            "GigabitEthernet1/0/1"
+                        ],
+                        "indent": 1,
+                        "order": 0,
+                        "removeable": true,
+                        "groups": [
+                            {
+                                "name": "Description",
+                                "command": "description",
+                                "hidden": false,
+                                "ui": "text",
+                                "value": "Device|Port|Customer|Management|ChangeRef"
+                            },
+                            {
+                                "name": "Switchport",
+                                "command": "switchport",
+                                "hidden": true,
+                                "ui": "checkbox",
+                                "enabled": false
+                            },
+                            {
+                                "name": "IP Address",
+                                "command": "ip_address",
+                                "hidden": false,
+                                "ui": "ipsubnet",
+                                "values": {
+                                    "address": "192.168.1.2",
+                                    "mask": "255.255.255.0"
+                                }
+                            }
+                        ]
+                    },
+                                        {
+                        "name": "Interface TenGigabitEthernet1/0/1",
+                        "hidden": false,
+                        "ios_context": "interface",
+                        "switch_context": "interface",
+                        "switch_context_params": [
+                            "TenGigabitEthernet1/0/1"
+                        ],
+                        "indent": 1,
+                        "order": 0,
+                        "removeable": true,
+                        "groups": [
+                            {
+                                "name": "Description",
+                                "command": "description",
+                                "hidden": false,
+                                "ui": "text",
+                                "value": "Device|Port|Customer|Management|ChangeRef"
+                            },
+                            {
+                                "name": "Switchport",
+                                "command": "switchport",
+                                "hidden": true,
+                                "ui": "checkbox",
+                                "enabled": false
+                            },
+                            {
+                                "name": "IP Address",
+                                "command": "ip_address",
+                                "hidden": false,
+                                "ui": "ipsubnet",
+                                "values": {
+                                    "address": "192.168.2.2",
                                     "mask": "255.255.255.0"
                                 }
                             }

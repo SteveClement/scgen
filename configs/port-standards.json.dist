@@ -84,7 +84,8 @@
                     "10": "10 MBPS",
                     "100": "100 MBPS",
                     "1000": "1000 MBPS"
-                } 
+                    "10000": "10000 MBPS"
+                }
             },
             {
                 "name": "Link Duplex",
@@ -96,7 +97,7 @@
                     "auto": "Auto",
                     "full": "Full",
                     "half": "Half"
-                } 
+                }
             },
             {
                 "name": "CDP",
@@ -227,7 +228,8 @@
                     "10": "10 MBPS",
                     "100": "100 MBPS",
                     "1000": "1000 MBPS"
-                } 
+                    "10000": "10000 MBPS"
+                }
             },
             {
                 "name": "Link Duplex",
@@ -238,7 +240,7 @@
                 "values": {
                     "full": "Full",
                     "half": "Half"
-                } 
+                }
             },
             {
                 "name": "CDP",
@@ -373,7 +375,8 @@
                     "10": "10 MBPS",
                     "100": "100 MBPS",
                     "1000": "1000 MBPS"
-                } 
+                    "10000": "10000 MBPS"
+                }
             },
             {
                 "name": "Link Duplex",
@@ -384,7 +387,7 @@
                 "values": {
                     "full": "Full",
                     "half": "Half"
-                } 
+                }
             },
             {
                 "name": "CDP",
@@ -394,7 +397,7 @@
                 "enabled": false
             },
             {
-                "name": "Portfast",
+                "name": 'Portfast',
                 "command": "spanningtree_portfast",
                 "hidden": true,
                 "ui": "checkbox",
