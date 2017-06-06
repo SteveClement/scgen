@@ -1,5 +1,5 @@
 [
-    { 
+    {
         "name": "3750x Datacentre Access Switch",
         "description": "Cisco 3750X",
         "contexts": {
@@ -22,43 +22,43 @@
                                         "value": "nagle",
                                         "enabled": false
                                     },
-                                    { 
+                                    {
                                         "hidden": true,
                                         "label": "Pad",
                                         "value": "pad",
                                         "enabled": false
                                     },
-                                    { 
+                                    {
                                         "hidden": true,
                                         "label": "TCP keep-alives (in)",
                                         "value": "tcp-keepalives-in",
                                         "enabled": false
                                     },
-                                    { 
+                                    {
                                         "hidden": true,
                                         "label": "TCP keep-alives (out)",
                                         "value": "tcp-keepalives-out",
                                         "enabled": false
                                     },
-                                    { 
+                                    {
                                         "hidden": true,
                                         "label": "Debug Timestamps",
                                         "value": "timestamps_debug",
                                         "enabled": true
                                     },
-                                    { 
+                                    {
                                         "hidden": true,
                                         "label": "Log Timestamps",
                                         "value": "timestamps_log",
                                         "enabled": true
                                     },
-                                    { 
+                                    {
                                         "hidden": true,
                                         "label": "Password Encryption",
                                         "value": "password-encryption",
                                         "enabled": true
                                     },
-                                    { 
+                                    {
                                         "hidden": true,
                                         "label": "Config Compression",
                                         "value": "compress-config",
@@ -450,7 +450,7 @@
                                 "command": "banner",
                                 "hidden": false,
                                 "ui": "textarea",
-                                "banner_type": "exec", 
+                                "banner_type": "exec",
                                 "value": [
                                     "^C\n",
                                     "*********************************************************\n",
@@ -477,7 +477,7 @@
                                 "command": "banner",
                                 "hidden": false,
                                 "ui": "textarea",
-                                "banner_type": "login", 
+                                "banner_type": "login",
                                 "value": [
                                     "^C\n",
                                     "*********************************************************\n",
@@ -548,7 +548,7 @@
                         "switch_context": "line",
                         "switch_context_params": [
                             "con 0"
-                        ], 
+                        ],
                         "indent": 1,
                         "groups": [
                             {
@@ -596,7 +596,7 @@
                         "switch_context": "line",
                         "switch_context_params": [
                             "vty 0 4"
-                        ], 
+                        ],
                         "indent": 1,
                         "groups": [
                             {
@@ -639,7 +639,7 @@
                         "switch_context": "line",
                         "switch_context_params": [
                             "vty 5-15"
-                        ], 
+                        ],
                         "indent": 1,
                         "groups": [
                             {
@@ -792,9 +792,806 @@
                     }
                 ]
             }
-                
+
         }
     },
+    {
+        "name": "Cisco Catalyst 2960X-48FPD-L Switch",
+        "description": "Cisco 2960X-48FPD-L",
+        "contexts": {
+            "global": {
+                "name": "Global Configuration",
+                "ios_context": "global",
+                "sections": [
+                    {
+                        "name": "General",
+                        "groups": [
+                            {
+                                "name": "Services",
+                                "hidden": true,
+                                "command": "service",
+                                "ui": "checkboxgroup",
+                                "fields": [
+                                    {
+                                        "hidden": true,
+                                        "label": "Nagle",
+                                        "value": "nagle",
+                                        "enabled": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "label": "Pad",
+                                        "value": "pad",
+                                        "enabled": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "label": "TCP keep-alives (in)",
+                                        "value": "tcp-keepalives-in",
+                                        "enabled": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "label": "TCP keep-alives (out)",
+                                        "value": "tcp-keepalives-out",
+                                        "enabled": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "label": "Debug Timestamps",
+                                        "value": "timestamps_debug",
+                                        "enabled": true
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "label": "Log Timestamps",
+                                        "value": "timestamps_log",
+                                        "enabled": true
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "label": "Password Encryption",
+                                        "value": "password-encryption",
+                                        "enabled": true
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "label": "Config Compression",
+                                        "value": "compress-config",
+                                        "enabled": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Hostname",
+                                "command": "hostname",
+                                "ui": "text",
+                                "hidden": false,
+                                "value": "default"
+                            },
+                            {
+                                "name": "Enable Password",
+                                "command": "enable_secret",
+                                "ui": "text",
+                                "hidden": false,
+                                "value": "5 $1$pdQG$kP3/m4HRVqE4BlYzDl6Ix."
+                            },
+                            {
+                                "name": "Storm control includes multicast",
+                                "command": "stormcontrol_multicast",
+                                "ui": "checkbox",
+                                "hidden": true,
+                                "enabled": false
+                            },
+                            {
+                                "name": "Trap logon failures",
+                                "command": "logon_failure_trap",
+                                "ui": "checkbox",
+                                "hidden": true,
+                                "enabled": true
+                            },
+                            {
+                                "name": "Verify files automatically",
+                                "command": "file_verify_auto",
+                                "ui": "checkbox",
+                                "hidden": true,
+                                "enabled": false
+                            },
+                            {
+                                "name": "System MTU",
+                                "command": "system_mtu",
+                                "ui": "number",
+                                "hidden": false,
+                                "value": 1552,
+                                "validation": {
+                                    "min": 1460,
+                                    "max": 9218,
+                                    "pattern": "mtu"
+                                }
+                            },
+                            {
+                                "name": "Internal VLAN allocation policy",
+                                "command": "vlan_internal_allocation_policy",
+                                "ui": "select",
+                                "hidden": false,
+                                "selected": "descending",
+                                "values": {
+                                    "descending": "Descending",
+                                    "ascending": "Ascending"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Logging",
+                        "hidden": false,
+                        "groups": [
+                            {
+                                "name": "Exception Logging",
+                                "command": "logging_exception",
+                                "ui": "number",
+                                "hidden": true,
+                                "value": 16000,
+                                "validation": {
+                                    "min": 0,
+                                    "max": 16000
+                                }
+                            },
+                            {
+                                "name": "Buffered Logging",
+                                "command": "logging_buffered",
+                                "ui": "number",
+                                "hidden": true,
+                                "value": 16384,
+                                "validation": {
+                                    "min": 0,
+                                    "max": 16384
+                                }
+                            },
+                            {
+                                "name": "Console logging",
+                                "command": "logging_console",
+                                "ui": "checkbox",
+                                "hidden": true,
+                                "enabled": true
+                            },
+                            {
+                                "name": "Log Events",
+                                "command": "logging_events",
+                                "ui": "checkboxgroup",
+                                "hidden": true,
+                                "fields": [
+                                    {
+                                        "label": "Link Status",
+                                        "hidden": true,
+                                        "value": "link-status",
+                                        "enabled": true
+                                    },
+                                    {
+                                        "label": "Trunk Status",
+                                        "hidden": true,
+                                        "value": "trunk-status",
+                                        "enabled": true
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Source Interface",
+                                "command": "logging_sourceinterface",
+                                "hidden": false,
+                                "ui": "text",
+                                "value": "FastEthernet0"
+                            },
+                            {
+                                "name": "Servers",
+                                "command": "logging_servers",
+                                "hidden": false,
+                                "ui": "servers",
+                                "values": [
+                                    "192.168.0.1"
+                                ]
+                            }
+                         ]
+                    },
+                    {
+                        "name": "Clock",
+                        "hidden": true,
+                        "groups": [
+                            {
+                                "name": "Timezone",
+                                "command": "clock_timezone",
+                                "ui": "text",
+                                "hidden": true,
+                                "value": "GMT 0"
+                            },
+                            {
+                                "name": "Daylight Savings Time",
+                                "command": "clock_summertime",
+                                "ui": "text",
+                                "hidden": true,
+                                "value": "BST recurring last Sun Mar 2:00 last Sun Oct 2:00"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "QoS",
+                        "hidden": true,
+                        "groups": [
+                        ]
+                    },
+                    {
+                        "name": "VTP",
+                        "hidden": true,
+                        "groups": [
+                            {
+                                "name": "Mode",
+                                "command": "vtp_mode",
+                                "ui": "text",
+                                "hidden": true,
+                                "value": "transparent"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "UDLD",
+                        "hidden": true,
+                        "groups": [
+                            {
+                                "name": "udld",
+                                "command": "udld",
+                                "ui": "text",
+                                "hidden": true,
+                                "value": "aggressive"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "IP Layer",
+                        "hidden": false,
+                        "groups": [
+                            {
+                                "name": "Options",
+                                "command": "ip",
+                                "hidden": true,
+                                "ui": "checkboxgroup",
+                                "fields": [
+                                    {
+                                        "label": "Use subnet zero",
+                                        "hidden": true,
+                                        "value": "subnet zero",
+                                        "enabled": true
+                                    },
+                                    {
+                                        "label": "Allow source routing",
+                                        "hidden": true,
+                                        "value": "source-route",
+                                        "enabled": false
+                                    },
+                                    {
+                                        "label": "Lookup domain names",
+                                        "hidden": true,
+                                        "value": "domain-lookup",
+                                        "enabled": false
+                                    },
+                                    {
+                                        "label": "Enable BOOTP server",
+                                        "hidden": true,
+                                        "value": "bootp server",
+                                        "enabled": false
+                                    },
+                                    {
+                                        "label": "Verify VLAN headers",
+                                        "hidden": true,
+                                        "value": "verify header vlan all",
+                                        "enabled": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Hosts",
+                                "command": "ip_hosts",
+                                "hidden": false,
+                                "ui": "hosts",
+                                "values": {
+                                    "TerminalServer": "192.168.0.1",
+                                    "AnotherTS": "192.168.0.2"
+                                }
+                            },
+                            {
+                                "name": "Routes",
+                                "command": "ip_routes",
+                                "hidden": false,
+                                "ui": "routes",
+                                "values": [
+                                    {"subnet": "10.0.0.0", "mask": "255.0.0.0", "gateway": "192.168.0.1"},
+                                    {"subnet": "172.17.0.0", "mask": "255.255.0.0", "gateway": "192.168.0.2"},
+                                    {"subnet": "172.16.0.0", "mask": "255.255.0.0", "gateway": "192.168.0.2"}
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Errdisable Recovery",
+                        "hidden": true,
+                        "groups": [
+                            {
+                                "name": "Recovery timer interval",
+                                "command": "errdisable_recovery_interval",
+                                "hidden": true,
+                                "ui": "number",
+                                "value": 300,
+                                "validation": {
+                                    "min": 10,
+                                    "max": 86400
+                                }
+                            },
+                            {
+                                "name": "Recovery from",
+                                "command": "errdisable_recovery_cause",
+                                "hidden": true,
+                                "ui": "checkboxgroup",
+                                "fields": [
+                                    {
+                                        "label": "UDLD",
+                                        "hidden": true,
+                                        "value": "udld",
+                                        "enabled": true
+                                    },
+                                    {
+                                        "label": "Link flap",
+                                        "hidden": true,
+                                        "value": "link-flap",
+                                        "enabled": true
+                                    },
+                                    {
+                                        "label": "Invalid GBIC",
+                                        "hidden": true,
+                                        "value": "gbic-invalid",
+                                        "enabled": true
+                                    },
+                                    {
+                                        "label": "Storm control",
+                                        "hidden": true,
+                                        "value": "storm-control",
+                                        "enabled": true
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Spanning Tree",
+                        "hidden": false,
+                        "groups": [
+                            {
+                                "name": "Mode",
+                                "command": "spanningtree_mode",
+                                "hidden": false,
+                                "ui": "select",
+                                "selected": "rapid-pvst",
+                                "values": {
+                                    "rapid-pvst": "Rapid PVST",
+                                    "pvst": "PVST",
+                                    "mst": "MST"
+                                }
+                            },
+                            {
+                                "name": "Enable PortFast BPDUGuard by default?",
+                                "command": "spanningtree_portfast_bpduguard_default",
+                                "hidden": false,
+                                "ui": "checkbox",
+                                "value": false,
+                                "enabled": true
+                            },
+                            {
+                                "name": "Enable Guard Loop by default?",
+                                "command": "spanningtree_guard_loop_default",
+                                "hidden": false,
+                                "ui": "checkbox",
+                                "value": false,
+                                "enabled": true
+                            },
+                            {
+                               "name": "Use System ID extension?",
+                               "command": "spanningtree_extend",
+                               "hidden": true,
+                               "ui": "checkbox",
+                               "value": false,
+                               "enabled": true
+                            },
+                            {
+                                "name": "Disable for VLANs",
+                                "command": "spanningtree_disable",
+                                "hidden": false,
+                                "ui": "stpdisable",
+                                "values": [
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "NTP",
+                        "hidden": false,
+                        "groups": [
+                            {
+                                "name": "Source Interface",
+                                "command": "ntp_source",
+                                "hidden": false,
+                                "ui": "text",
+                                "value": "FastEthernet0"
+                            },
+                            {
+                                "name": "Servers",
+                                "command": "ntp_servers",
+                                "hidden": false,
+                                "ui": "servers",
+                                "values": [
+                                    "192.168.0.1"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "SNMP",
+                        "hidden": true,
+                        "groups": [
+                        ]
+                    },
+                    {
+                        "name": "Banners",
+                        "hidden": true,
+                        "groups": [
+                            {
+                                "name": "Exec",
+                                "command": "banner",
+                                "hidden": false,
+                                "ui": "textarea",
+                                "banner_type": "exec",
+                                "value": [
+                                    "^C\n",
+                                    "*********************************************************\n",
+                                    "* This system is owned by %COMPANY-X%. If you are not   *\n",
+                                    "* authorized to access this system, exit immediately.   *\n",
+                                    "* Unauthorized access to this system is forbidden by    *\n",
+                                    "* company policies, national, and international laws.   *\n",
+                                    "* Unauthorized users are subject to criminal and civil  *\n",
+                                    "* penalties as well as company initiated disciplinary   *\n",
+                                    "* proceedings.                                          *\n",
+                                    "*                                                       *\n",
+                                    "* By entry into this system you acknowledge that you    *\n",
+                                    "* are authorized access and the level of privilege you  *\n",
+                                    "* subsequently execute on this system. You further      *\n",
+                                    "* acknowledge that by entry into this system you        *\n",
+                                    "* expect no privacy from monitoring.                    *\n",
+                                    "*********************************************************\n",
+                                    "^C"
+                                ]
+
+                            },
+                            {
+                                "name": "Login",
+                                "command": "banner",
+                                "hidden": false,
+                                "ui": "textarea",
+                                "banner_type": "login",
+                                "value": [
+                                    "^C\n",
+                                    "*********************************************************\n",
+                                    "* This system is owned by %COMPANY-X%. If you are not   *\n",
+                                    "* authorized to access this system, exit immediately.   *\n",
+                                    "* Unauthorized access to this system is forbidden by    *\n",
+                                    "* company policies, national, and international laws.   *\n",
+                                    "* Unauthorized users are subject to criminal and civil  *\n",
+                                    "* penalties as well as company initiated disciplinary   *\n",
+                                    "* proceedings.                                          *\n",
+                                    "*                                                       *\n",
+                                    "* By entry into this system you acknowledge that you    *\n",
+                                    "* are authorized access and the level of privilege you  *\n",
+                                    "* subsequently execute on this system. You further      *\n",
+                                    "* acknowledge that by entry into this system you        *\n",
+                                    "* expect no privacy from monitoring.                    *\n",
+                                    "*********************************************************\n",
+                                    "^C"
+                                ]
+
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Alias Configuration",
+                        "hidden": false,
+                        "groups": [
+                            {
+                                "name": "Aliases",
+                                "command": "alias",
+                                "hidden": false,
+                                "ui": "aliases",
+                                "values": [
+                                    {"context": "exec", "name": "sid", "command": "show interface description"}
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Line Configuration",
+                        "hidden": false,
+                        "ui": "include",
+                        "target": "lines"
+                    },
+                    {
+                        "name": "VLAN Configuration",
+                        "hidden": false,
+                        "ui": "include",
+                        "target": "vlans"
+                    },
+                    {
+                        "name": "Interface Configuration",
+                        "hidden": false,
+                        "ui": "include",
+                        "target": "interfaces"
+                    }
+                ]
+            },
+            "lines": {
+                "name": "Line Configuration",
+                "hidden": false,
+                "ios_context": "global",
+                "sections": [
+                    {
+                        "name": "Console",
+                        "hidden": false,
+                        "ios_context": "line",
+                        "switch_context": "line",
+                        "switch_context_params": [
+                            "con 0"
+                        ],
+                        "indent": 1,
+                        "groups": [
+                            {
+                                "name": "Exec Timeout",
+                                "command": "exectimeout",
+                                "ui": "text",
+                                "hidden": true,
+                                "value": "15 0"
+                            },
+                            {
+                                "name": "Password",
+                                "command": "password",
+                                "ui": "text",
+                                "hidden": false,
+                                "value": "5 $1$pdQG$kP3/m4HRVqE4BlYzDl6Ix."
+                            },
+                            {
+                                "name": "Logging",
+                                "command": "logging",
+                                "ui": "select",
+                                "hidden": true,
+                                "selected": "synchronous",
+                                "values": {
+                                    "synchronous": "Synchronous",
+                                    "asynchronous": "Asynchronous"
+                                }
+                            },
+                            {
+                                "name": "Stop bits",
+                                "command": "stopbits",
+                                "ui": "number",
+                                "hidden": true,
+                                "value": 1,
+                                "validation": {
+                                    "min": 1,
+                                    "max": 8
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "VTY 0-4",
+                        "hidden": false,
+                        "ios_context": "line",
+                        "switch_context": "line",
+                        "switch_context_params": [
+                            "vty 0 4"
+                        ],
+                        "indent": 1,
+                        "groups": [
+                            {
+                                "name": "Exec Timeout",
+                                "command": "exectimeout",
+                                "ui": "text",
+                                "hidden": true,
+                                "value": "15 0"
+                            },
+                            {
+                                "name": "Password",
+                                "command": "password",
+                                "ui": "text",
+                                "hidden": false,
+                                "value": "5 $1$pdQG$kP3/m4HRVqE4BlYzDl6Ix."
+                            },
+                            {
+                                "name": "Logging",
+                                "command": "logging",
+                                "ui": "select",
+                                "hidden": true,
+                                "selected": "synchronous",
+                                "values": {
+                                    "synchronous": "Synchronous",
+                                    "asynchronous": "Asynchronous"
+                                }
+                            },
+                              {
+                                "name": "Transport Input",
+                                "command": "transportssh",
+                                "ui": "text",
+                                "hidden": true
+                            }
+                        ]
+                    },
+                    {
+                        "name": "VTY 5-15",
+                        "hidden": false,
+                        "ios_context": "line",
+                        "switch_context": "line",
+                        "switch_context_params": [
+                            "vty 5-15"
+                        ],
+                        "indent": 1,
+                        "groups": [
+                            {
+                                "name": "Exec Timeout",
+                                "command": "exectimeout",
+                                "ui": "text",
+                                "hidden": true,
+                                "value": "15 0"
+                            },
+                            {
+                                "name": "Password",
+                                "command": "password",
+                                "ui": "text",
+                                "hidden": false,
+                                "value": "5 $1$pdQG$kP3/m4HRVqE4BlYzDl6Ix."
+                            },
+                            {
+                                "name": "Logging",
+                                "command": "logging",
+                                "ui": "select",
+                                "hidden": true,
+                                "selected": "synchronous",
+                                "values": {
+                                    "synchronous": "Synchronous",
+                                    "asynchronous": "Asynchronous"
+                                }
+                            },
+                             {
+                                "name": "Transport Input",
+                                "command": "transportnone",
+                                "ui": "text",
+                                "hidden": true
+                            }
+
+                        ]
+                    }
+                ]
+            },
+            "vlans": {
+                "name": "VLAN Configuration",
+                "hidden": false,
+                "ios_context": "global",
+                "sections": [
+                    {
+                        "name": "VLAN 1",
+                        "hidden": false,
+                        "ios_context": "vlan",
+                        "switch_context": "vlan",
+                        "switch_context_params": [
+                            1
+                        ],
+                        "indent": 1,
+                        "order": 1,
+                        "groups": [
+                            {
+                                "name": "Description",
+                                "command": "description",
+                                "ui": "text",
+                                "value": "Default"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "VLAN 4093",
+                        "hidden": false,
+                        "ios_context": "vlan",
+                        "switch_context": "vlan",
+                        "switch_context_params": [
+                            4093
+                        ],
+                        "indent": 1,
+                        "order": 4093,
+                        "removeable": true,
+                        "groups": [
+                            {
+                                "name": "Description",
+                                "command": "description",
+                                "ui": "text",
+                                "value": "Dummy VLAN"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Add VLAN",
+                        "hidden": false,
+                        "order": 4097,
+                        "groups": [
+                            {
+                                "name": "VLAN",
+                                "ui": "addvlan"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "interfaces": {
+                "name": "Interface Configuration",
+                "hidden": false,
+                "ios_context": "global",
+                "sections": [
+                    {
+                        "name": "Interface FastEthernet0",
+                        "hidden": false,
+                        "ios_context": "interface",
+                        "switch_context": "interface",
+                        "switch_context_params": [
+                            "FastEthernet0"
+                        ],
+                        "indent": 1,
+                        "order": 0,
+                        "removeable": false,
+                        "groups": [
+                            {
+                                "name": "Description",
+                                "command": "description",
+                                "hidden": false,
+                                "ui": "text",
+                                "value": "Device|Port|Customer|Management|ChangeRef"
+                            },
+                            {
+                                "name": "Switchport",
+                                "command": "switchport",
+                                "hidden": true,
+                                "ui": "checkbox",
+                                "enabled": false
+                            },
+                            {
+                                "name": "IP Address",
+                                "command": "ip_address",
+                                "hidden": false,
+                                "ui": "ipsubnet",
+                                "values": {
+                                    "address": "192.168.0.2",
+                                    "mask": "255.255.255.0"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Add Interface",
+                        "hidden": false,
+                        "removeable": false,
+                        "order": "zzzz-last",
+                        "groups": [
+                            {
+                                "name": "New Interface",
+                                "ui": "addinterface"
+                            }
+                        ]
+                    }
+                ]
+            }
+
+        }
+    },
+
     {
         "name": "6500-agg",
         "description": "Cisco C6500 Aggregation Switch",
@@ -820,7 +1617,7 @@
                                     "combined": "Combined"
                                 }
                             }
-                     
+
                         ]
                     }
                 ]
